@@ -1,0 +1,21 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+  functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# SPA Fallback for client-side routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Enterprise Security Headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
